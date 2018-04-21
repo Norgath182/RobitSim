@@ -5,7 +5,7 @@
  * @start date (08.02.18, inherited)
  * @version (1.2.1 dev, inherited)
  * @last edit (20.04.18)
- * @edit changes: creation, separation from RobitSim
+ * @edit changes: code cleanup, non holo nav continue, rotation status fix progress
  */
 
 import objectdraw.*;
@@ -124,7 +124,7 @@ public class Robit{
         sX=nsX+currX; sY=nsY+currY;
         s2=new Location(sX,sY);
         s12.setEndPoints(s1,s2);
-        beta+=dBeta;
+        beta-=dBeta;
         beta%=(2*Math.PI);
     }
 
@@ -146,9 +146,9 @@ public class Robit{
      */
     public void moveTo(Location point){
         double dir=Math.atan2(point.getY()-currY,point.getX()-currX);
-        if(dir<0) dir+=2*Math.PI;
+        //if(dir<0) dir+=2*Math.PI;
         //System.out.println("dir: "+dir/Math.PI);
-        rotate(dir-theta);
+        rotate(dir);//-theta);
         int dist=(int)Math.sqrt(Math.pow(point.getX()-currX,2)+Math.pow(point.getY()-currY,2));
         move(dist);
     }
@@ -156,11 +156,11 @@ public class Robit{
     /*
     for(int r=0;r<=dir;r++){
         rotate(Math.PI/180);
-        wait(10);
+        time(10);
     }
     for(int d=0;d<=dist;d++){
         move(1);
-        wait(10);
+        timer(10);
     }
     */
 
@@ -179,10 +179,10 @@ public class Robit{
     }
 
     /**
-     * wait method: delays for a set amount of time
+     * timer method: delays for a set amount of time
      * parameters: time to wait in milliseconds
      */
-    public void wait(int time){
+    public void timer(int time){
         double start=System.currentTimeMillis(),
         end=start+(double)time;
         while(System.currentTimeMillis()<=end){}

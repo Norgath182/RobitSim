@@ -13,8 +13,8 @@
  *      area mapping,
  *      localization,
  *      SLAM implementation
- * @last edit (19.04.18, non-holonomic start)
- * @edit changes: separation of Robit from RobitSim
+ * @last edit (20.04.18)
+ * @edit changes: separation of Robit from RobitSim, reset symbol change
  */
 
 import objectdraw.*;
@@ -59,7 +59,7 @@ public class RobitSim extends FrameWindowController implements KeyListener{
         new Text("S",canvas.getWidth()-45,10,canvas);
         reset=new FilledRect(canvas.getWidth()-30,10,20,20,canvas);
         reset.setColor(Color.red);
-        new Text("X",canvas.getWidth()-25,10,canvas);
+        new Text("R",canvas.getWidth()-25,10,canvas);
         moveLoc=new FilledOval(0,0,5,5,canvas);
         moveLoc.setColor(Color.green);
         moveLoc.hide();
