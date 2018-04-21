@@ -51,8 +51,8 @@ public class Robit{
         s12=new Line(s1,s2,canvas);
         s12.setColor(Color.red);
 
-        theta=0.0;
-        beta=0.0;
+        theta=Math.PI/2;
+        beta=Math.PI/2;
     }
 
     /** 
@@ -60,8 +60,8 @@ public class Robit{
      * input: int distance
      */
     public void move(int dMove){
-        double dx=dMove*Math.sin(theta),
-               dy=-dMove*Math.cos(theta);
+        double dx=dMove*Math.cos(theta),
+               dy=-dMove*Math.sin(theta);
         currX+=dx;
         currY+=dy;
         
@@ -108,9 +108,9 @@ public class Robit{
 
         setLines();
 
-        theta+=dTheta;
+        theta-=dTheta;
         theta%=(2*Math.PI);
-        beta+=dTheta;
+        beta-=dTheta;
         beta%=(2*Math.PI);
     }
 
@@ -145,21 +145,24 @@ public class Robit{
      * parameters: point to navigate to
      */
     public void moveTo(Location point){
-        double dir=Math.atan2(point.getY()+currY,point.getX()-currX);
+        double dir=Math.atan2(point.getY()-currY,point.getX()-currX);
         if(dir<0) dir+=2*Math.PI;
         //System.out.println("dir: "+dir/Math.PI);
-        for(int r=0;r<=dir;r++){
-           rotate(Math.PI/180);
-           wait(10);
-        }
-        //rotate(dir);//-theta);
+        rotate(dir-theta);
         int dist=(int)Math.sqrt(Math.pow(point.getX()-currX,2)+Math.pow(point.getY()-currY,2));
-        /*for(int d=0;d<=dist;d++){
-            move(1);
-            wait(10);
-        }*/
         move(dist);
     }
+    
+    /*
+    for(int r=0;r<=dir;r++){
+        rotate(Math.PI/180);
+        wait(10);
+    }
+    for(int d=0;d<=dist;d++){
+        move(1);
+        wait(10);
+    }
+    */
 
     /**
      * getState method: relays robot state information
