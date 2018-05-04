@@ -3,8 +3,8 @@
  * a differential drive and a sonar sensor
  *
  * @author (Eric Voigt)
- * @start date (08.02.18)
- * @version (v1.2.1 dev)
+ * @project start date (08.02.18)
+ * @project version (1.2.1)
  * @current features: movement, rotation, sonar rotation,
  *                    GUI control, keybound control,
  *                    nonholonomic autonavigate
@@ -14,7 +14,7 @@
  *      localization,
  *      SLAM implementation
  * @last edit (20.04.18)
- * @edit changes: separation of Robit from RobitSim, reset symbol change
+ * @edit changes: non holo completion (in class Robit)
  */
 
 import objectdraw.*;

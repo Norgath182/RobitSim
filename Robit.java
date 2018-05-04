@@ -2,10 +2,11 @@
  * Purpose: class to simulate robit, used by RobitSim
  * 
  * @author (Eric Voigt)
- * @start date (08.02.18, inherited)
- * @version (1.2.1 dev, inherited)
- * @last edit (20.04.18)
- * @edit changes: code cleanup, non holo nav continue, rotation status fix progress
+ * @project start date (08.02.18)
+ * @project version (1.2.1)
+ * @ToDo: rotation status fix
+ * @last edit (03.05.18)
+ * @edit changes: non holo nav complete
  */
 
 import objectdraw.*;
@@ -140,23 +141,21 @@ public class Robit{
         s12.removeFromCanvas();
     }
 
-    /** CURRENTLY NOT FUNCTIONING CORRECTLY
+    /**
      * moveTo method: make the robit auto navigate to point
      * parameters: point to navigate to
      */
     public void moveTo(Location point){
-        double dir=Math.atan2(point.getY()-currY,point.getX()-currX);
-        //if(dir<0) dir+=2*Math.PI;
-        //System.out.println("dir: "+dir/Math.PI);
-        rotate(dir);//-theta);
+        double dir=-Math.atan2(point.getY()-currY,point.getX()-currX)-theta;
         int dist=(int)Math.sqrt(Math.pow(point.getX()-currX,2)+Math.pow(point.getY()-currY,2));
+        rotate(-dir);
         move(dist);
     }
     
     /*
     for(int r=0;r<=dir;r++){
         rotate(Math.PI/180);
-        time(10);
+        timer(10);
     }
     for(int d=0;d<=dist;d++){
         move(1);
