@@ -71,6 +71,14 @@ public class RobitSim extends FrameWindowController implements KeyListener{
         requestFocusInWindow();
     }
     
+    /**
+     * onMouseDrag method: makes the robit follow a dragged mouse pointer
+     * parameters: Location point (given by window)
+     */
+    public void onMouseDrag(Location point){
+        robity.moveTo(point);
+    }
+    
     /** 
      * onMousePress method: manages GUI button pressing
      * parameters: Location (given by window)
